@@ -1,0 +1,153 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply antialiased;
+    background-color: #FAFAFA;
+    color: #03444A;
+  }
+
+  a {
+    color: #00A8A8;
+    transition-property: color;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 150ms;
+  }
+
+  a:hover {
+    color: #E66414;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-semibold tracking-tight;
+  }
+}
+
+@layer components {
+  .btn {
+    @apply inline-flex items-center justify-center px-6 py-3 rounded-lg font-medium transition-all duration-200;
+  }
+
+  .btn-primary {
+    background-color: #FF924D;
+    color: white;
+  }
+
+  .btn-primary:hover {
+    background-color: #E66414;
+    @apply shadow-lg;
+  }
+
+  .btn-secondary {
+    background-color: #00A8A8;
+    color: white;
+  }
+
+  .btn-secondary:hover {
+    background-color: #03444A;
+    @apply shadow-lg;
+  }
+
+  .btn-outline {
+    border: 2px solid #03444A;
+    color: #03444A;
+  }
+
+  .btn-outline:hover {
+    background-color: #03444A;
+    color: white;
+  }
+
+  .tag {
+    @apply inline-flex items-center px-3 py-1 rounded-full text-sm font-medium transition-colors cursor-pointer;
+    background-color: #9AD3DA;
+    color: #03444A;
+  }
+
+  .tag:hover {
+    background-color: #00A8A8;
+    color: white;
+  }
+
+  .tag.active {
+    background-color: #03444A;
+    color: white;
+  }
+
+  .container {
+    @apply max-w-6xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  .prose {
+    color: #03444A;
+    @apply leading-relaxed;
+  }
+
+  .prose h2 {
+    @apply text-2xl font-semibold mt-8 mb-4;
+  }
+
+  .prose h3 {
+    @apply text-xl font-semibold mt-6 mb-3;
+  }
+
+  .prose p {
+    @apply mb-4;
+  }
+
+  .prose ul, .prose ol {
+    @apply mb-4 pl-6;
+  }
+
+  .prose ul {
+    @apply list-disc;
+  }
+
+  .prose ol {
+    @apply list-decimal;
+  }
+
+  .prose li {
+    @apply mb-2;
+  }
+
+  .prose a {
+    color: #00A8A8;
+    @apply underline;
+  }
+
+  .prose a:hover {
+    color: #E66414;
+  }
+
+  .prose img {
+    @apply rounded-lg my-6;
+  }
+
+  .prose blockquote {
+    border-left: 4px solid #FF924D;
+    @apply pl-4 italic my-4;
+  }
+
+  .prose code {
+    background-color: #9AD3DA;
+    color: #03444A;
+    @apply px-1.5 py-0.5 rounded text-sm;
+  }
+
+  .prose pre {
+    background-color: #03444A;
+    @apply text-gray-100 p-4 rounded-lg overflow-x-auto my-4;
+  }
+
+  .prose pre code {
+    @apply bg-transparent p-0;
+    color: #9AD3DA;
+  }
+}

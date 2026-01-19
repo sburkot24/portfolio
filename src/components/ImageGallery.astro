@@ -1,0 +1,131 @@
+---
+import { Image } from 'astro:assets';
+
+interface Props {
+  images: ImageMetadata[];
+  alt?: string;
+}
+
+const { images, alt = 'Project image' } = Astro.props;
+---
+
+{images.length > 0 && (
+  <div class="image-gallery my-8">
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      {images.map((image, index) => (
+        <div class="gallery-item cursor-pointer overflow-hidden rounded-lg" data-index={index}>
+          <Image
+            src={image}
+            alt={`${alt} ${index + 1}`}
+            class="w-full h-auto hover:scale-105 transition-transform duration-300"
+            widths={[400, 600, 800]}
+            sizes="(max-width: 640px) 100vw, 50vw"
+          />
+        </div>
+      ))}
+    </div>
+
+    <!-- Lightbox -->
+    <div id="lightbox" class="fixed inset-0 bg-black/90 z-50 hidden items-center justify-center">
+      <button
+        id="lightbox-close"
+        class="absolute top-4 right-4 text-white hover:text-tangerine transition-colors"
+        aria-label="Close lightbox"
+      >
+        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+      <button
+        id="lightbox-prev"
+        class="absolute left-4 top-1/2 -translate-y-1/2 text-white hover:text-tangerine transition-colors"
+        aria-label="Previous image"
+      >
+        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+        </svg>
+      </button>
+      <button
+        id="lightbox-next"
+        class="absolute right-4 top-1/2 -translate-y-1/2 text-white hover:text-tangerine transition-colors"
+        aria-label="Next image"
+      >
+        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+        </svg>
+      </button>
+      <img id="lightbox-image" src="" alt="" class="max-w-[90vw] max-h-[90vh] object-contain" />
+    </div>
+  </div>
+)}
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const galleryItems = document.querySelectorAll('.gallery-item');
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImage = document.getElementById('lightbox-image') as HTMLImageElement;
+    const closeBtn = document.getElementById('lightbox-close');
+    const prevBtn = document.getElementById('lightbox-prev');
+    const nextBtn = document.getElementById('lightbox-next');
+
+    let currentIndex = 0;
+    const images: string[] = [];
+
+    galleryItems.forEach((item) => {
+      const img = item.querySelector('img');
+      if (img) {
+        images.push(img.src);
+      }
+
+      item.addEventListener('click', () => {
+        currentIndex = parseInt(item.getAttribute('data-index') || '0');
+        showImage(currentIndex);
+        lightbox?.classList.remove('hidden');
+        lightbox?.classList.add('flex');
+      });
+    });
+
+    function showImage(index: number) {
+      if (lightboxImage && images[index]) {
+        lightboxImage.src = images[index];
+      }
+    }
+
+    closeBtn?.addEventListener('click', () => {
+      lightbox?.classList.add('hidden');
+      lightbox?.classList.remove('flex');
+    });
+
+    prevBtn?.addEventListener('click', () => {
+      currentIndex = (currentIndex - 1 + images.length) % images.length;
+      showImage(currentIndex);
+    });
+
+    nextBtn?.addEventListener('click', () => {
+      currentIndex = (currentIndex + 1) % images.length;
+      showImage(currentIndex);
+    });
+
+    lightbox?.addEventListener('click', (e) => {
+      if (e.target === lightbox) {
+        lightbox.classList.add('hidden');
+        lightbox.classList.remove('flex');
+      }
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (!lightbox?.classList.contains('hidden')) {
+        if (e.key === 'Escape') {
+          lightbox.classList.add('hidden');
+          lightbox.classList.remove('flex');
+        } else if (e.key === 'ArrowLeft') {
+          currentIndex = (currentIndex - 1 + images.length) % images.length;
+          showImage(currentIndex);
+        } else if (e.key === 'ArrowRight') {
+          currentIndex = (currentIndex + 1) % images.length;
+          showImage(currentIndex);
+        }
+      }
+    });
+  });
+</script>

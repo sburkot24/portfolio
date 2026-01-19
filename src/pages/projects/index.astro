@@ -1,0 +1,42 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ProjectCard from '../../components/ProjectCard.astro';
+import TagFilter from '../../components/TagFilter.astro';
+import { getCollection } from 'astro:content';
+
+const allProjects = await getCollection('projects', ({ data }) => !data.draft);
+const sortedProjects = allProjects.sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
+);
+
+// Extract all unique tags
+const allTags = [...new Set(allProjects.flatMap((project) => project.data.tags))].sort();
+---
+
+<BaseLayout title="Projects" description="Explore my projects in data visualization, electronics, woodworking, photography, and more.">
+  <section class="container py-12">
+    <div class="max-w-2xl mb-8">
+      <h1 class="text-3xl md:text-4xl font-bold text-midnight mb-4">Projects</h1>
+      <p class="text-gray-600">
+        A collection of my work spanning data visualization, electronics,
+        woodworking, photography, and global health engineering.
+      </p>
+    </div>
+
+    {allTags.length > 0 && <TagFilter tags={allTags} />}
+
+    {sortedProjects.length > 0 ? (
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {sortedProjects.map((project) => (
+          <div data-tags={project.data.tags.join(',')}>
+            <ProjectCard project={project} />
+          </div>
+        ))}
+      </div>
+    ) : (
+      <div class="text-center py-12">
+        <p class="text-gray-500">No projects yet. Check back soon!</p>
+      </div>
+    )}
+  </section>
+</BaseLayout>

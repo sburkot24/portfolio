@@ -1,0 +1,6 @@
+<svg width="800" height="500" xmlns="http://www.w3.org/2000/svg">
+  <rect width="100%" height="100%" fill="#9AD3DA"/>
+  <circle cx="400" cy="220" r="50" fill="#03444A"/>
+  <circle cx="360" cy="280" r="40" fill="#FF924D"/>
+  <text x="400" y="380" text-anchor="middle" fill="#03444A" font-family="system-ui, sans-serif" font-size="20">Project Image</text>
+</svg>

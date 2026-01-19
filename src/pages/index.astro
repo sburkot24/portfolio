@@ -1,0 +1,111 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import { getCollection } from 'astro:content';
+
+const allProjects = await getCollection('projects', ({ data }) => !data.draft);
+const featuredProjects = allProjects
+  .filter((project) => project.data.featured)
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+  .slice(0, 3);
+
+// If no featured projects, show the most recent ones
+const displayProjects = featuredProjects.length > 0
+  ? featuredProjects
+  : allProjects.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf()).slice(0, 3);
+---
+
+<BaseLayout title="Home">
+  <!-- Hero Section -->
+  <section class="container py-16 md:py-24">
+    <div class="max-w-3xl">
+      <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-midnight mb-6">
+        Hi, I'm <span class="text-spanish">Stephen Burkot</span>
+      </h1>
+      <p class="text-xl md:text-2xl text-gray-600 mb-4">
+        Engineer | Researcher | Maker
+      </p>
+      <p class="text-lg text-gray-500 mb-8 leading-relaxed">
+        I'm a global health engineer passionate about creating impact through
+        technology, research, and hands-on making. From data visualization to
+        woodworking, I love building things that matter.
+      </p>
+      <div class="flex flex-wrap gap-4">
+        <a href="/projects" class="btn btn-primary">
+          View Projects
+        </a>
+        <a href="/about" class="btn btn-outline">
+          About Me
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Projects Section -->
+  {displayProjects.length > 0 && (
+    <section class="bg-sky/20 py-16">
+      <div class="container">
+        <div class="flex items-center justify-between mb-8">
+          <h2 class="text-2xl md:text-3xl font-semibold text-midnight">
+            Featured Projects
+          </h2>
+          <a href="/projects" class="text-sea hover:text-spanish font-medium">
+            View All &rarr;
+          </a>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {displayProjects.map((project) => (
+            <ProjectCard project={project} />
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- Quick Links Section -->
+  <section class="container py-16">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <a href="/publications" class="group p-6 bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow">
+        <div class="w-12 h-12 bg-tangerine/20 rounded-lg flex items-center justify-center mb-4">
+          <svg class="w-6 h-6 text-spanish" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+          </svg>
+        </div>
+        <h3 class="text-lg font-semibold text-midnight group-hover:text-spanish transition-colors mb-2">
+          Publications
+        </h3>
+        <p class="text-gray-500 text-sm">
+          Research papers and academic publications in global health and engineering.
+        </p>
+      </a>
+
+      <a href="/resume" class="group p-6 bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow">
+        <div class="w-12 h-12 bg-sky/50 rounded-lg flex items-center justify-center mb-4">
+          <svg class="w-6 h-6 text-midnight" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+          </svg>
+        </div>
+        <h3 class="text-lg font-semibold text-midnight group-hover:text-spanish transition-colors mb-2">
+          Resume
+        </h3>
+        <p class="text-gray-500 text-sm">
+          Download my CV or view my professional experience and skills.
+        </p>
+      </a>
+
+      <a href="/about" class="group p-6 bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow">
+        <div class="w-12 h-12 bg-sea/20 rounded-lg flex items-center justify-center mb-4">
+          <svg class="w-6 h-6 text-sea" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+          </svg>
+        </div>
+        <h3 class="text-lg font-semibold text-midnight group-hover:text-spanish transition-colors mb-2">
+          About Me
+        </h3>
+        <p class="text-gray-500 text-sm">
+          Learn more about my background, interests, and get in touch.
+        </p>
+      </a>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,74 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const publications = await getCollection('publications');
+const sortedPublications = publications.sort((a, b) => b.data.year - a.data.year);
+---
+
+<BaseLayout title="Publications" description="Research papers and academic publications by Stephen Burkot.">
+  <section class="container py-12">
+    <div class="max-w-3xl">
+      <h1 class="text-3xl md:text-4xl font-bold text-midnight mb-4">Publications</h1>
+      <p class="text-gray-600 mb-8">
+        A selection of my research papers and academic publications in global health and engineering.
+      </p>
+
+      {sortedPublications.length > 0 ? (
+        <div class="space-y-6">
+          {sortedPublications.map((pub) => (
+            <article class="p-6 bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow">
+              <div class="flex items-start justify-between gap-4">
+                <div class="flex-grow">
+                  <h2 class="text-lg font-semibold text-midnight mb-2">
+                    {pub.data.link ? (
+                      <a
+                        href={pub.data.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="hover:text-spanish transition-colors"
+                      >
+                        {pub.data.title}
+                        <svg class="inline w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                        </svg>
+                      </a>
+                    ) : (
+                      pub.data.title
+                    )}
+                  </h2>
+                  <p class="text-gray-600 text-sm mb-2">{pub.data.authors}</p>
+                  <p class="text-gray-500 text-sm">
+                    <span class="font-medium">{pub.data.journal}</span>
+                    {pub.data.doi && (
+                      <span class="ml-2">
+                        DOI:{' '}
+                        <a
+                          href={`https://doi.org/${pub.data.doi}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          class="text-sea hover:text-spanish hover:underline"
+                        >
+                          {pub.data.doi}
+                        </a>
+                      </span>
+                    )}
+                  </p>
+                </div>
+                <div class="flex-shrink-0">
+                  <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-sky text-midnight">
+                    {pub.data.year}
+                  </span>
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
+      ) : (
+        <div class="text-center py-12 bg-sky/20 rounded-xl">
+          <p class="text-gray-500">Publications coming soon.</p>
+        </div>
+      )}
+    </div>
+  </section>
+</BaseLayout>

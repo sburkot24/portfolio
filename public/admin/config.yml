@@ -1,0 +1,65 @@
+backend:
+  name: git-gateway
+  branch: main
+
+# Media files will be stored in the repo under public/images
+media_folder: public/images
+public_folder: /images
+
+# Publish mode allows drafts
+publish_mode: editorial_workflow
+
+# Site URL for previews
+site_url: https://stephenburkot.com
+display_url: https://stephenburkot.com
+
+collections:
+  # Projects Collection
+  - name: projects
+    label: Projects
+    folder: src/content/projects
+    create: true
+    slug: "{{slug}}"
+    extension: md
+    format: frontmatter
+    fields:
+      - { label: Title, name: title, widget: string }
+      - { label: Description, name: description, widget: string }
+      - { label: Date, name: date, widget: datetime, date_format: YYYY-MM-DD, time_format: false }
+      - label: Tags
+        name: tags
+        widget: select
+        multiple: true
+        options:
+          - data-viz
+          - electronics
+          - woodworking
+          - photography
+          - global-health
+          - software
+          - 3d-printing
+      - { label: Cover Image, name: coverImage, widget: image }
+      - label: Gallery Images
+        name: images
+        widget: list
+        required: false
+        field: { label: Image, name: image, widget: image }
+      - { label: Featured, name: featured, widget: boolean, default: false }
+      - { label: Draft, name: draft, widget: boolean, default: false }
+      - { label: Body, name: body, widget: markdown }
+
+  # Publications Collection
+  - name: publications
+    label: Publications
+    folder: src/content/publications
+    create: true
+    slug: "{{slug}}"
+    extension: json
+    format: json
+    fields:
+      - { label: Title, name: title, widget: string }
+      - { label: Authors, name: authors, widget: string }
+      - { label: Journal, name: journal, widget: string }
+      - { label: Year, name: year, widget: number, value_type: int, min: 1990, max: 2030 }
+      - { label: Link, name: link, widget: string, required: false }
+      - { label: DOI, name: doi, widget: string, required: false }

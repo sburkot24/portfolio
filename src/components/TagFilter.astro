@@ -1,0 +1,54 @@
+---
+interface Props {
+  tags: string[];
+}
+
+const { tags } = Astro.props;
+---
+
+<div class="tag-filter mb-8">
+  <div class="flex flex-wrap gap-2">
+    <button
+      class="tag active"
+      data-tag="all"
+    >
+      All
+    </button>
+    {tags.map((tag) => (
+      <button
+        class="tag"
+        data-tag={tag}
+      >
+        {tag}
+      </button>
+    ))}
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const tagButtons = document.querySelectorAll('.tag-filter .tag');
+    const projectCards = document.querySelectorAll('[data-tags]');
+
+    tagButtons.forEach((button) => {
+      button.addEventListener('click', () => {
+        const selectedTag = button.getAttribute('data-tag');
+
+        // Update active state
+        tagButtons.forEach((btn) => btn.classList.remove('active'));
+        button.classList.add('active');
+
+        // Filter projects
+        projectCards.forEach((card) => {
+          const cardTags = card.getAttribute('data-tags')?.split(',') || [];
+
+          if (selectedTag === 'all' || cardTags.includes(selectedTag)) {
+            (card as HTMLElement).style.display = '';
+          } else {
+            (card as HTMLElement).style.display = 'none';
+          }
+        });
+      });
+    });
+  });
+</script>

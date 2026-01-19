@@ -1,0 +1,48 @@
+---
+import { Image } from 'astro:assets';
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  project: CollectionEntry<'projects'>;
+}
+
+const { project } = Astro.props;
+const { title, description, tags, coverImage, date } = project.data;
+---
+
+<article class="group bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300">
+  <a href={`/projects/${project.slug}`} class="block">
+    <div class="aspect-[16/10] overflow-hidden">
+      <Image
+        src={coverImage}
+        alt={title}
+        class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+        widths={[400, 600, 800]}
+        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+      />
+    </div>
+    <div class="p-5">
+      <div class="flex flex-wrap gap-2 mb-3">
+        {tags.slice(0, 3).map((tag) => (
+          <span class="text-xs px-2 py-1 bg-sky text-midnight rounded-full">
+            {tag}
+          </span>
+        ))}
+        {tags.length > 3 && (
+          <span class="text-xs px-2 py-1 bg-gray-100 text-gray-500 rounded-full">
+            +{tags.length - 3}
+          </span>
+        )}
+      </div>
+      <h3 class="text-lg font-semibold text-midnight group-hover:text-spanish transition-colors mb-2">
+        {title}
+      </h3>
+      <p class="text-sm text-gray-600 line-clamp-2">
+        {description}
+      </p>
+      <div class="mt-3 text-xs text-gray-400">
+        {date.toLocaleDateString('en-US', { year: 'numeric', month: 'long' })}
+      </div>
+    </div>
+  </a>
+</article>
