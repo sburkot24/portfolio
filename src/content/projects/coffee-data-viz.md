@@ -1,50 +1,49 @@
 ---
-title: "InstantCoffee Analysis"
-description: "Interactive data visualization exploring global coffee consumption patterns and their economic impacts."
-date: 2024-03-22
+title: "Instant Coffee Data Analysis"
+description: "Data visualization exploring whether premium pricing correlates with quality in James Hoffmann's 38-coffee bracket competition."
+date: 2020-05-27
 tags:
   - data-viz
-  - software
-coverImage: "./images/MedAdher-4.jpg"
+coverImage: "./images/BeanInfo.jpeg"
+images:
+  - "./images/BeanInfo.jpeg"
+  - "./images/Bean-type.jpeg"
+  - "./images/Country.png"
+  - "./images/Fairtrade-vs-place.jpeg"
+  - "./images/Fairtrade-vs-cost.jpeg"
+  - "./images/OrgTri.png"
+  - "./images/RvC.png"
+  - "./images/CostvRnd.png"
 featured: true
 draft: false
 ---
 
 ## Overview
 
-An interactive data visualization project exploring the global instant coffee market, consumption patterns, and their relationship to economic indicators across different regions.
+A comprehensive data analysis examining 38 instant coffees from James Hoffmann's bracket competition. This visualization explores whether premium pricing correlates with quality, and investigates how factors like bean type, fair trade certification, and origin affect both cost and taste ratings.
 
-## Key Insights
+## Key Findings
 
-- **Regional Preferences**: Distinct consumption patterns between developed and developing markets
-- **Economic Correlation**: Strong correlation between GDP per capita and premium coffee consumption
-- **Seasonal Trends**: Unexpected seasonal patterns in tropical regions
-- **Brand Loyalty**: High brand switching rates in emerging markets
+### Price & Quality Connection
 
-## Technical Approach
+The analysis suggests paying more does increase the chance of having a better cup of coffee, with a notable price threshold around £3.50 per 100g where coffees begin advancing past early rounds.
 
-### Data Sources
+### Bean Type Matters
 
-- FAO Coffee Production Statistics
-- World Bank Economic Indicators
-- Consumer Survey Data (n=10,000)
-- Trade Flow Data
+Arabica beans dominated the competition, with all coffees reaching round three containing at least some arabica. This premium bean type also commanded higher average prices (£4.33/100g).
 
-### Visualization Stack
+### Fair Trade Paradox
 
-- **D3.js**: Custom interactive visualizations
-- **Observable**: Rapid prototyping and exploration
-- **Mapbox**: Geographic visualizations
-- **Python/Pandas**: Data cleaning and preprocessing
+Surprisingly, FairTrade Marked coffee was on average slightly cheaper (£3.52/100g) than unmarked products (£3.97/100g), challenging assumptions about ethical sourcing costs.
 
-## Interactive Features
+### The Organic Triangle
 
-The visualization includes:
-- Zoomable world map with consumption heat overlays
-- Time-series slider for historical trends (2000-2024)
-- Filter controls for demographic breakdowns
-- Linked views for correlated analysis
+The four organic entries fell into what I've termed the "Organic Triangle"—expensive yet poor-performing, suggesting premium environmental practices don't guarantee consumer satisfaction.
 
-## Impact
+### Origin Transparency
 
-This analysis was featured in industry publications and helped inform market entry strategies for a major coffee brand expanding into Southeast Asian markets.
+Coffees displaying country of origin commanded higher prices but generally performed better overall.
+
+## Data Limitations
+
+The bracket format limits granularity, organic and origin data samples are small, and information gathering was incomplete across all 38 products.

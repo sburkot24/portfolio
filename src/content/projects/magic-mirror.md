@@ -1,48 +1,66 @@
 ---
 title: "Magic Mirror"
-description: "A Raspberry Pi-powered smart mirror displaying weather, calendar, and news at a glance."
-date: 2024-06-15
+description: "A smart display combining woodworking with embedded computing, featuring a 21.5\" monitor in a custom walnut frame powered by a Raspberry Pi 3."
+date: 2021-02-08
 tags:
   - electronics
-  - software
-coverImage: "./images/placeholder-1.svg"
+  - woodworking
+coverImage: "./images/MagicMirror-1.jpg"
+images:
+  - "./images/MagicMirror-1.jpg"
+  - "./images/MagicMirror-2.jpg"
+  - "./images/MagicMirror-3.jpg"
+  - "./images/MagicMirror-4.jpg"
+  - "./images/MagicMirror-5.jpg"
+  - "./images/MagicMirror-6.jpg"
+  - "./images/MagicMirror-7.jpg"
+  - "./images/MagicMirror-8.jpg"
+  - "./images/MagicMirror-9.jpg"
+  - "./images/IMG_20170612_180037.jpg"
+  - "./images/IMG_20170612_180040.jpg"
+  - "./images/IMG_20170614_172923.jpg"
+  - "./images/IMG_20170621_181449.jpg"
+  - "./images/IMG_20170621_184144.jpg"
+  - "./images/IMG_20170621_191738.jpg"
+  - "./images/IMG_20181208_185706.jpg"
+  - "./images/IMG_20181208_191706.jpg"
+  - "./images/IMG_20181208_191713.jpg"
 featured: true
 draft: false
 ---
 
 ## Overview
 
-The Magic Mirror project combines a two-way mirror with a Raspberry Pi-powered display to create an interactive, information-rich mirror for the home.
+The Magic Mirror is a smart display project that combines woodworking with embedded computing. The piece features a 21.5" monitor housed in a custom walnut frame, powered by a Raspberry Pi 3.
 
-## Features
+This was the first project I was excited to embark on after college, enabled by newfound access to tools, workspace, funding, and time.
 
-- **Weather Display**: Real-time weather conditions and 5-day forecast
-- **Calendar Integration**: Google Calendar sync for upcoming events
-- **News Headlines**: Curated news feed from configurable sources
-- **Voice Control**: Optional Alexa integration for hands-free interaction
-- **Modular Design**: Easy to add custom modules for additional functionality
+## Timeline
 
-## Technical Details
+- **2017**: First built
+- **2018**: Stained and rebuilt
+- **2021**: Hung and displayed
 
-### Hardware
+## Construction
 
-- Raspberry Pi 4 (4GB RAM)
-- 24" LCD Monitor
-- Two-way acrylic mirror
-- Custom wooden frame
-- PIR motion sensor for auto wake/sleep
+The frame is crafted from walnut and finished with Tung oil varnish. The hardest part was finding a good place to stain the frame while living in an apartment without proper ventilation—but the end result is definitely worth it.
 
-### Software
+## Functionality
 
-- MagicMirror² platform
-- Custom modules for calendar and weather
-- Node.js backend
-- PM2 for process management
+The mirror displays various information modules including:
 
-## Build Process
+- Clock
+- Weather data
+- World clock
+- Custom sheets
+- Water reminders
 
-The frame was constructed from walnut hardwood with hand-cut joinery. The electronics are housed in a custom enclosure behind the mirror, with careful cable management to maintain a clean appearance.
+Built on the open-source [MagicMirror²](https://magicmirror.builders/) platform with custom modules.
 
-## Lessons Learned
+## Hardware
 
-This project taught me valuable lessons about combining traditional woodworking with modern electronics, as well as the importance of thermal management in enclosed spaces.
+- Raspberry Pi 3
+- 21.5" LCD Monitor
+- Two-way mirror glass
+- Custom walnut frame
+- Tung oil varnish finish
