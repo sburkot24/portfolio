@@ -10,6 +10,10 @@ export default {
         'sky': '#9AD3DA',           // Non Photo blue - light backgrounds, tags
         'tangerine': '#FF924D',     // Atomic tangerine - secondary accent, CTAs
         'spanish': '#E66414',       // Spanish orange - hover states, emphasis
+        // Warm coffee shop tones
+        'cream': '#FAF6F1',         // Latte foam - main background
+        'latte': '#F5EFE6',         // Slightly darker cream - section backgrounds
+        'warmwhite': '#FFFDF9',     // Warm white - cards
       },
       fontFamily: {
         sans: ['Inter', 'system-ui', 'sans-serif'],
