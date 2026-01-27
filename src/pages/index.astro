@@ -23,7 +23,7 @@ const displayProjects = featuredProjects.length > 0
         Hi, I'm <span class="text-spanish">Stephen Burkot</span>
       </h1>
       <p class="text-xl md:text-2xl text-gray-600 mb-4">
-        Engineer | Researcher | Maker
+        <span id="engineer-type" class="text-sea"></span> Engineer | Researcher | Maker
       </p>
       <p class="text-lg text-gray-500 mb-8 leading-relaxed">
         I'm a global health engineer passionate about creating impact through
@@ -108,4 +108,42 @@ const displayProjects = featuredProjects.length > 0
       </a>
     </div>
   </section>
+
+  <script>
+    const types = [
+      "Global Health",
+      "Radar",
+      "Test",
+      "Field",
+      "Systems",
+      "Mechanical",
+      "Design",
+      "Product",
+      "Verification"
+    ];
+
+    let currentIndex = 0;
+    const element = document.getElementById('engineer-type');
+
+    function updateText() {
+      if (element) {
+        element.style.opacity = '0';
+        setTimeout(() => {
+          element.textContent = types[currentIndex];
+          element.style.opacity = '1';
+          currentIndex = (currentIndex + 1) % types.length;
+        }, 300);
+      }
+    }
+
+    // Initial text
+    if (element) {
+      element.style.transition = 'opacity 0.3s ease-in-out';
+      element.textContent = types[0];
+      currentIndex = 1;
+    }
+
+    // Change every 2 seconds
+    setInterval(updateText, 2000);
+  </script>
 </BaseLayout>
