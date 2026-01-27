@@ -119,7 +119,7 @@ This data is pretty interesting but it is limited in several ways. By doing a br
 
 Thanks for reading!
 
-GitHub link: [https://github.com/sburkot24/InstantCoffeeViz](https://github.com/sburkot24/InstantCoffeeViz/blob/master/README.md)
+GitHub link: [github.com/sburkot24](https://github.com/sburkot24)
 
 ## Acknowledgements
 
