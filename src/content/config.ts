@@ -26,7 +26,20 @@ const publications = defineCollection({
   }),
 });
 
+const patents = defineCollection({
+  type: 'content',
+  schema: ({ image }) => z.object({
+    title: z.string(),
+    inventors: z.string(),
+    patentNumber: z.string(),
+    year: z.number(),
+    link: z.string().url().optional(),
+    image: image().optional(),
+  }),
+});
+
 export const collections = {
   projects,
   publications,
+  patents,
 };

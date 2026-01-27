@@ -1,74 +1,156 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
+import { Image } from 'astro:assets';
 
 const publications = await getCollection('publications');
 const sortedPublications = publications.sort((a, b) => b.data.year - a.data.year);
+
+const patents = await getCollection('patents');
+const sortedPatents = patents.sort((a, b) => b.data.year - a.data.year);
 ---
 
-<BaseLayout title="Publications" description="Research papers and academic publications by Stephen Burkot.">
+<BaseLayout title="Publications & Patents" description="Research papers, academic publications, and patents by Stephen Burkot.">
   <section class="container py-12">
-    <div class="max-w-3xl">
-      <h1 class="text-3xl md:text-4xl font-bold text-midnight mb-4">Publications</h1>
-      <p class="text-gray-600 mb-8">
-        A selection of my research papers and academic publications in global health and engineering.
+    <div class="max-w-4xl">
+      <h1 class="text-3xl md:text-4xl font-bold text-midnight mb-4">Publications & Patents</h1>
+      <p class="text-gray-600 mb-12">
+        A selection of my research papers, academic publications, and patents in global health and engineering.
       </p>
 
-      {sortedPublications.length > 0 ? (
-        <div class="space-y-6">
-          {sortedPublications.map((pub) => (
-            <article class="p-6 bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow">
-              <div class="flex items-start justify-between gap-4">
-                <div class="flex-grow">
-                  <h2 class="text-lg font-semibold text-midnight mb-2">
-                    {pub.data.link ? (
-                      <a
-                        href={pub.data.link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        class="hover:text-spanish transition-colors"
-                      >
-                        {pub.data.title}
-                        <svg class="inline w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                        </svg>
-                      </a>
-                    ) : (
-                      pub.data.title
-                    )}
-                  </h2>
-                  <p class="text-gray-600 text-sm mb-2">{pub.data.authors}</p>
-                  <p class="text-gray-500 text-sm">
-                    <span class="font-medium">{pub.data.journal}</span>
-                    {pub.data.doi && (
-                      <span class="ml-2">
-                        DOI:{' '}
+      <!-- Publications Section -->
+      <div class="mb-16">
+        <h2 class="text-2xl font-semibold text-midnight mb-6 flex items-center">
+          <svg class="w-6 h-6 mr-2 text-sea" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+          </svg>
+          Publications
+        </h2>
+
+        {sortedPublications.length > 0 ? (
+          <div class="space-y-6">
+            {sortedPublications.map((pub) => (
+              <article class="p-6 bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow">
+                <div class="flex items-start justify-between gap-4">
+                  <div class="flex-grow">
+                    <h3 class="text-lg font-semibold text-midnight mb-2">
+                      {pub.data.link ? (
                         <a
-                          href={`https://doi.org/${pub.data.doi}`}
+                          href={pub.data.link}
                           target="_blank"
                           rel="noopener noreferrer"
-                          class="text-sea hover:text-spanish hover:underline"
+                          class="hover:text-spanish transition-colors"
                         >
-                          {pub.data.doi}
+                          {pub.data.title}
+                          <svg class="inline w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                          </svg>
                         </a>
-                      </span>
-                    )}
-                  </p>
+                      ) : (
+                        pub.data.title
+                      )}
+                    </h3>
+                    <p class="text-gray-600 text-sm mb-2">{pub.data.authors}</p>
+                    <p class="text-gray-500 text-sm">
+                      <span class="font-medium">{pub.data.journal}</span>
+                      {pub.data.doi && (
+                        <span class="ml-2">
+                          DOI:{' '}
+                          <a
+                            href={`https://doi.org/${pub.data.doi}`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="text-sea hover:text-spanish hover:underline"
+                          >
+                            {pub.data.doi}
+                          </a>
+                        </span>
+                      )}
+                    </p>
+                  </div>
+                  <div class="flex-shrink-0">
+                    <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-sky text-midnight">
+                      {pub.data.year}
+                    </span>
+                  </div>
                 </div>
-                <div class="flex-shrink-0">
-                  <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-sky text-midnight">
-                    {pub.data.year}
-                  </span>
+              </article>
+            ))}
+          </div>
+        ) : (
+          <div class="text-center py-12 bg-gray-50 rounded-xl">
+            <p class="text-gray-500">Publications coming soon.</p>
+          </div>
+        )}
+      </div>
+
+      <!-- Patents Section -->
+      <div>
+        <h2 class="text-2xl font-semibold text-midnight mb-6 flex items-center">
+          <svg class="w-6 h-6 mr-2 text-tangerine" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+          </svg>
+          Patents
+        </h2>
+
+        {sortedPatents.length > 0 ? (
+          <div class="space-y-6">
+            {sortedPatents.map((patent) => (
+              <article class="p-6 bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow">
+                <div class="flex items-start gap-6">
+                  {patent.data.image && (
+                    <div class="flex-shrink-0 w-24 h-24 bg-gray-100 rounded-lg overflow-hidden flex items-center justify-center">
+                      <Image
+                        src={patent.data.image}
+                        alt={patent.data.title}
+                        class="max-w-full max-h-full object-contain"
+                        width={96}
+                        height={96}
+                      />
+                    </div>
+                  )}
+                  <div class="flex-grow">
+                    <div class="flex items-start justify-between gap-4">
+                      <div>
+                        <h3 class="text-lg font-semibold text-midnight mb-2">
+                          {patent.data.link ? (
+                            <a
+                              href={patent.data.link}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              class="hover:text-spanish transition-colors"
+                            >
+                              {patent.data.title}
+                              <svg class="inline w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                              </svg>
+                            </a>
+                          ) : (
+                            patent.data.title
+                          )}
+                        </h3>
+                        <p class="text-gray-600 text-sm mb-2">{patent.data.inventors}</p>
+                        <p class="text-gray-500 text-sm">
+                          <span class="font-medium text-spanish">{patent.data.patentNumber}</span>
+                        </p>
+                      </div>
+                      <div class="flex-shrink-0">
+                        <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-tangerine/20 text-spanish">
+                          {patent.data.year}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-              </div>
-            </article>
-          ))}
-        </div>
-      ) : (
-        <div class="text-center py-12 bg-gray-50 rounded-xl">
-          <p class="text-gray-500">Publications coming soon.</p>
-        </div>
-      )}
+              </article>
+            ))}
+          </div>
+        ) : (
+          <div class="text-center py-12 bg-gray-50 rounded-xl">
+            <p class="text-gray-500">Patents coming soon.</p>
+          </div>
+        )}
+      </div>
     </div>
   </section>
 </BaseLayout>
