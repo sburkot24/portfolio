@@ -4,10 +4,10 @@ description: "Custom built leash holders that fit onto our entryway table. "
 date: 2026-01-28
 tags:
   - 3d-printing
-coverImage: /images/pxl_20260128_153008727.mp.jpg
+coverImage: "./images/pxl_20260128_153008727.mp.jpg"
 images:
-  - /images/pxl_20260128_152639254.jpg
-  - /images/pxl_20260128_155306807.jpg
+  - "./images/pxl_20260128_152639254.jpg"
+  - "./images/pxl_20260128_155306807.jpg"
 featured: false
 draft: false
 ---
