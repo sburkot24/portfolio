@@ -2,9 +2,9 @@ backend:
   name: git-gateway
   branch: main
 
-# Media files will be stored in the repo under public/images
-media_folder: public/images
-public_folder: /images
+# Media files stored with project content for Astro image optimization
+media_folder: src/content/projects/images
+public_folder: ./images
 
 # Publish mode allows drafts
 publish_mode: editorial_workflow
