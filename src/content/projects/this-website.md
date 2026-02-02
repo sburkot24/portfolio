@@ -8,10 +8,10 @@ coverImage: images/screenshot-2026-02-01-at-6.19.43 pm.png
 featured: true
 draft: false
 ---
-I had previously been using Squarespace to host my website which was  focused on my former photography business. While the costs weren't too insane it was hard to rationalize the ~$200/year to host a platform which:\
-A) Confused couples trying to find a photographer but could not contact me
+Previously if you visited stephenburkot.com you would have been met with my Squarespace site which was  focused on my (former) photography business. While the costs weren't too insane it was hard to rationalize the ~$200/year to host a platform which:\
+A) Confused couples trying to find a photographer but did not provide a way to contact me
 
-B) Confused people who knew me as an engineer
+B) Confused people who knew me as an engineer, not a photographer
 
 I had heard of claude before from Vergecast/HardFork/the internet as a whole but hadn't paid much attention as most vibecoding attempts seemed to frustrate users. However, I was inspired after Casey Newton and Kevin Roose mentioned how easy it was to move away from Squarespace via Claude. At the same time I wanted a medium to post projects and work I was doing which is too sporadic and unfocused for a social media site. 
 
