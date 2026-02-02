@@ -4,9 +4,9 @@ description: Did it need to be custom? No but it was good challenge
 date: 2026-01-11
 tags:
   - woodworking
-coverImage: images/r1003099.jpg
+coverImage: images/r1003103.jpg
 images:
-  - images/r1003103.jpg
+  - images/r1003099.jpg
   - images/r1003094.jpg
   - images/r1003093.jpg
   - images/pxl_20260110_205606306.mp.jpg
