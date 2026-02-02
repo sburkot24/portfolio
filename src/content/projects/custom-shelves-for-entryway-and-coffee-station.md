@@ -10,10 +10,10 @@ images:
   - images/r1003094.jpg
   - images/r1003093.jpg
   - images/pxl_20260110_205606306.mp.jpg
-featured: false
+featured: true
 draft: false
 ---
-After rebuilding the stairs I needed to find a good use for all the woodworking tools I had bought and figured shelves were easy enough.
+After [rebuilding the stairs ](stephenburkot.com/projects/entries/replace-porch-treads-and-risers)I needed to find a good use for all the woodworking tools I had bought and figured shelves were easy enough.
 
 Sourced 4in and 6in wide planed pieces of Walnut and Wana. Cut them to length using the circular saw, sanded down to 320 and then stained with a tung oil varnish. Have limited inddor spaces I can expose to dust and varnish fumes so had to sand outside and stain in my bathroom.
 
