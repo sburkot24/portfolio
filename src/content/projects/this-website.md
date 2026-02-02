@@ -1,6 +1,6 @@
 ---
 title: This website!
-description: My first genuine dive into vibe coding
+description: My first sincere dive into vibe coding
 date: 2026-02-01
 tags:
   - software
